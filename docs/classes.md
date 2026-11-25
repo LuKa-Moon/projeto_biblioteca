@@ -1,3 +1,5 @@
+# Classes
+
 * Livro, Exemplar, Reserva, Emprestimo, Prazo, Usuario, Estudante, Funcionario, Arquivista, Assistente: classes de modelo, concentram as regras de negócio e atributos do núcleo da aplicação, tendo relação direta com entidades do mundo real. 
     * Pelo padrão Information Expert do GRASP, estão responsáveis por responder dados sobre si mesmas, já que têm acesso direto a eles. Exemplo: um Exemplar tem a função EstaDisponivel(), que retorna se ele está ou não disponível;
 * UsuariosRepository, EmprestimosRepository, ReservasRepository, ExemplaresRepository, LivrosRepository, Repository: fazem o intermédio entre a porta BDPport e o resto da aplicação, contendo instruções como acessar o banco de dados e realizar consultas, alterações, deleções e inserções. Cada uma implementa as funções de Repository (classe mãe).
