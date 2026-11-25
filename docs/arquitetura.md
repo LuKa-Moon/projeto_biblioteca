@@ -1,10 +1,3 @@
-# Modelo de Domínio e Responsabilidades
-
-## Principais Classes e Responsabilidades
-## Justificativas GRASP
-## Princípios SOLID aplicados
-## Análise de evolução
-
 # Proposta Arquitetural
 
 ## Principais componentes (ou módulos)
