@@ -2,7 +2,7 @@ using MailKit.Net.Smtp;
 using MailKit;
 using MimeKit;
 
-namespace designSoftware.Adaptadores
+namespace src.Adaptadores
 {
     public class NotificadorAdapter
     {

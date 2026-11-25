@@ -1,4 +1,4 @@
-namespace designsoftware.nucleo.modelos
+namespace src.nucleo.modelos
 {
     public class Usuario
     {

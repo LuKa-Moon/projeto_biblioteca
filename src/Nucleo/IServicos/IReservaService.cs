@@ -1,4 +1,4 @@
-namespace designSoftware.Nucleo.IServicos
+namespace src.Nucleo.IServicos
 {
     public interface IReservaService
     {

@@ -1,12 +1,13 @@
-using designsoftware.nucleo.modelos;
-using designSoftware.Dados;
+using src.nucleo.modelos;
+using src.Dados;
 using Microsoft.AspNetCore.Mvc;
+using src.Portas;
 
-namespace designSoftware.Adaptadores
+namespace src.Adaptadores
 {
     [ApiController]
     [Route("usuario/[controller]")]
-    public class WebAdapter : ControllerBase
+    public class WebAdapter : ControllerBase, UsuarioPort
     {
         private readonly EstudantesContexto _estudantesContexto;
         private readonly LivrosContexto _livrosContexto;
@@ -28,7 +29,13 @@ namespace designSoftware.Adaptadores
             if(!estudante.PodeReservarLivro())
                 return Conflict("O estudante não pode realizar uma nova reserva no momento.");
             
-                
+            if(livro.Disponiveis().Count == 0)
+                return Conflict("Não há exemplares do livro disponíveis no momento.");
+
+            //cria reserva
+            //persiste
+            //notifica
+            //retorna
         }
     }
 }

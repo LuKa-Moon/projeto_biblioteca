@@ -1,7 +1,7 @@
-using designsoftware.nucleo.modelos;
+using src.nucleo.modelos;
 using Microsoft.EntityFrameworkCore;
 
-namespace designSoftware.Dados
+namespace src.Dados
 {
     public class EstudantesContexto : DbContext
     {

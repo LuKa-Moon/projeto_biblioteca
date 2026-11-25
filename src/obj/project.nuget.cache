@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "C5Er7zgrBZI=",
+  "dgSpecHash": "gwN08nbj5BE=",
   "success": true,
-  "projectFilePath": "/home/gustavo/Documentos/projeto_biblioteca/src/design-software.csproj",
+  "projectFilePath": "/home/gustavo/Documentos/projeto_biblioteca/src/src.csproj",
   "expectedPackageFiles": [
     "/home/gustavo/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/home/gustavo/.nuget/packages/mailkit/5.0.0/mailkit.5.0.0.nupkg.sha512",

@@ -2574,9 +2574,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/gustavo/Documentos/projeto_biblioteca/src/design-software.csproj",
-      "projectName": "design-software",
-      "projectPath": "/home/gustavo/Documentos/projeto_biblioteca/src/design-software.csproj",
+      "projectUniqueName": "/home/gustavo/Documentos/projeto_biblioteca/src/src.csproj",
+      "projectName": "src",
+      "projectPath": "/home/gustavo/Documentos/projeto_biblioteca/src/src.csproj",
       "packagesPath": "/home/gustavo/.nuget/packages/",
       "outputPath": "/home/gustavo/Documentos/projeto_biblioteca/src/obj/",
       "projectStyle": "PackageReference",

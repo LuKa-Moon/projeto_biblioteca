@@ -1,6 +1,6 @@
-using designSoftware.Nucleo.IServicos;
+using src.Nucleo.IServicos;
 
-namespace designSoftware.Nucleo.Servicos
+namespace src.Nucleo.Servicos
 {
     public class ReservaService : IReservaService
     {

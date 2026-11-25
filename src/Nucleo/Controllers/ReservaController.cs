@@ -1,4 +1,4 @@
-namespace designSoftware.nucleo.controllers
+namespace src.nucleo.controllers
 {
     
 }
