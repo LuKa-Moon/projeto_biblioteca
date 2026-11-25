@@ -47,7 +47,7 @@ A tabela final para os critérios considerados (os que tinham ASRs que indicavam
 
  -------------------------------------------------
  | Atributo de qualidade       |  A  |  B  |  C  |
- -------------------------------------------------
+ |-----------------------------|-----|-----|-----|
  | Modificabilidade            |  +  |  0  |  -  |
  | Desempenho                  |  -  |  +  |  +  |
  | Testabilidade               |  +  |  -  |  -  |
