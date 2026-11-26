@@ -59,10 +59,9 @@ namespace src.Nucleo.Controllers
             await _reservaRepository.Criar(novaReserva);
 
             await _notificacaoService.Notificar(
-                novaReserva,
+                (src.Nucleo.Modelos.INotificavel)novaReserva,
                 estudante.Nome,
-                estudante.Email
-            );
+                estudante.Email);
 
             return ResultadoReserva.Sucesso;
         }
