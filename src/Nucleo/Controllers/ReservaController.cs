@@ -59,7 +59,7 @@ namespace src.Nucleo.Controllers
             await _reservaRepository.Criar(novaReserva);
 
             await _notificacaoService.Notificar(
-                (src.Nucleo.Modelos.INotificavel)novaReserva,
+                novaReserva,
                 estudante.Nome,
                 estudante.Email);
 

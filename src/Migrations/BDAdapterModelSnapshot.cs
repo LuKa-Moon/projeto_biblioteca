@@ -22,8 +22,9 @@ namespace src.Migrations
                     b.Property<string>("Grr")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Cpf")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Cpf")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
                         .IsRequired()
