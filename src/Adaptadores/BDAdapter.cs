@@ -1,6 +1,6 @@
 
 using src.Nucleo.Modelos;
-using src.Nucleo.Portas;
+using src.Portas;
 using Microsoft.EntityFrameworkCore;
 
 namespace src.Adaptadores

@@ -1,12 +1,12 @@
-using src.Nucleo.Portas;
+using src.Portas;
 
 namespace src.Nucleo.Repositorios
 {
     public abstract class Repository<T> where T : class
     {
-        protected readonly IBDPort _bdPort;
+        protected readonly BDPort _bdPort;
 
-        protected Repository(IBDPort bdPort)
+        protected Repository(BDPort bdPort)
         {
             _bdPort = bdPort;
         }

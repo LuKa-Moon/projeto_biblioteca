@@ -1,4 +1,5 @@
 using src.Nucleo.Modelos;
+using src.Portas;
 
 namespace src.Nucleo.Repositorios
 {

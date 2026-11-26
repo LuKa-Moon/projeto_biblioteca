@@ -1,4 +1,4 @@
-namespace src.Nucleo.Portas
+namespace src.Portas
 {
     public interface BDPort
     {

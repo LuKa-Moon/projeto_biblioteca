@@ -1,3 +1,5 @@
+using src.Nucleo.Modelos;
+
 namespace src.Nucleo.IServicos
 {
     public interface INotificacaoService
