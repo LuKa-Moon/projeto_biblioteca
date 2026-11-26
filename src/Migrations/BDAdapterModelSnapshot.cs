@@ -120,7 +120,7 @@ namespace src.Migrations
 
             modelBuilder.Entity("src.Nucleo.Modelos.Reserva", b =>
                 {
-                    b.HasOne("src.Nucleo.Modelos.Livro", "LivroReservado")
+                    b.HasOne("src.Nucleo.Modelos.Exemplar", "LivroReservado")
                         .WithMany()
                         .HasForeignKey("LivroReservadoId")
                         .OnDelete(DeleteBehavior.Cascade)

@@ -2,7 +2,7 @@ using src.Nucleo.Modelos;
 using Microsoft.AspNetCore.Mvc;
 using src.Portas;
 using src.Nucleo.Controllers;
-using Microsoft.EntityFrameworkCore;
+using src.Nucleo.IServicos;
 
 namespace src.Adaptadores
 {
