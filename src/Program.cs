@@ -13,6 +13,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 builder.Services.AddDbContext<BDAdapter>(options =>
     options.UseSqlite("Data Source=biblioteca.db"));
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler =
+            System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+    });
 
 builder.Services.AddScoped<BDPort>(provider =>
     provider.GetRequiredService<BDAdapter>());
