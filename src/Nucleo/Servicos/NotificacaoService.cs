@@ -1,9 +1,10 @@
 using src.Nucleo.Modelos;
+using src.Nucleo.IServicos;
 using src.Portas;
 
 namespace src.Nucleo.Servicos
 {
-    public class NotificacaoService
+    public class NotificacaoService : INotificacaoService
     {
         private readonly NotificadorPort _notificador;
 
