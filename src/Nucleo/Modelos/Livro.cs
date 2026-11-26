@@ -4,9 +4,10 @@ namespace src.nucleo.modelos
     {
         public required string Nome {get; set;}
         public int Id {get; set;}
-        public IList<Exemplar> Exemplares {get; set;} = [];
+        public ICollection<Exemplar> Exemplares {get; set;} = [];
+        public string? CapaUrl {get; set;}
 
-        public IList<Exemplar> Disponiveis()
+        public ICollection<Exemplar> Disponiveis()
         {
             return Exemplares.Where(exemplar => exemplar.EstaDisponivel()).ToList();
         }

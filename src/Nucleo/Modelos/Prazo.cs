@@ -1,11 +1,13 @@
 namespace src.nucleo.modelos
 {
-    public class Prazo
+    public abstract class Prazo
     {
         public bool Finalizado {get; set;}
         public DateTime DataInicial {get; set;}
         public DateTime DataLimite {get; set;}
         public Estudante Responsavel {get; set;}
+
+        public Prazo() {}
 
         public Prazo(Estudante responsavel)
         {

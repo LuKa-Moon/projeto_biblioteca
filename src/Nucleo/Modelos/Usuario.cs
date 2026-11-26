@@ -1,6 +1,6 @@
 namespace src.nucleo.modelos
 {
-    public class Usuario
+    abstract public class Usuario
     {
         public required string Nome {get; set;}
         public int Cpf {get; set;}

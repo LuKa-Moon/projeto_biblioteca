@@ -3,10 +3,10 @@ namespace src.nucleo.modelos
     public class Estudante : Usuario
     {
         public required string Grr {get; set;}
-        public IList<Reserva> Reservas {get; set;} = [];
+        public ICollection<Reserva> Reservas {get; set;} = [];
         public required string Email {get; set;}
 
-        // public IList<Emprestimo> Emprestimos {get; set;} = [];
+        // public ICollection<Emprestimo> Emprestimos {get; set;} = [];
         // ...
 
         // public bool PodeEmprestarLivro() {}
