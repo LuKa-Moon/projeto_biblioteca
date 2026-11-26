@@ -9,5 +9,19 @@ namespace src.Nucleo.Repositorios
             : base(contexto)
         {
         }
+
+        public override async Task<IEnumerable<Estudante>> GetAll()
+        {
+            return await _dbSet
+                .Include(e => e.Reservas)
+                .ToListAsync();
+        }
+
+        public override async Task<Estudante?> Get(object id)
+        {
+            return await _dbSet
+                .Include(e => e.Reservas)
+                .FirstOrDefaultAsync(e => e.Id == (int)id);
+        }
     }
 }
