@@ -45,15 +45,15 @@ Justificativa: A pode ser desenvolvido por uma equipe pequena sem experiência c
 ## Conclusão baseada nos ASRs
 A tabela final para os critérios considerados (os que tinham ASRs que indicavam sua importância) ficou assim:
 
--------------------------------------------------
-| Atributo de qualidade       |  A  |  B  |  C  |
--------------------------------------------------
-| Modificabilidade            |  +  |  0  |  -  |
-| Desempenho                  |  -  |  +  |  +  |
-| Testabilidade               |  +  |  -  |  -  |
-| Complexidade                |  0  |  -  |  –  |
-| Implantação                 |  +  |  -  |  -  |
-| Custo de desenv. e operação |  +  |  -  |  -  |
--------------------------------------------------
+ -------------------------------------------------
+ | Atributo de qualidade       |  A  |  B  |  C  |
+ |-----------------------------|-----|-----|-----|
+ | Modificabilidade            |  +  |  0  |  -  |
+ | Desempenho                  |  -  |  +  |  +  |
+ | Testabilidade               |  +  |  -  |  -  |
+ | Complexidade                |  0  |  -  |  –  |
+ | Implantação                 |  +  |  -  |  -  |
+ | Custo de desenv. e operação |  +  |  -  |  -  |
+ -------------------------------------------------
 
 Assim, foi escolhida a opção A: Monólito modular com hexagonal.
