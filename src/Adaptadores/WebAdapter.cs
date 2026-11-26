@@ -1,54 +1,61 @@
-using src.nucleo.modelos;
+using src.Nucleo.Modelos;
 using Microsoft.AspNetCore.Mvc;
 using src.Portas;
+using src.Nucleo.Controllers;
+using Microsoft.EntityFrameworkCore;
 
 namespace src.Adaptadores
 {
     [ApiController]
-    [Route("usuario/[controller]")]
-    public class WebAdapter : ControllerBase, UsuarioPort
+    [Route("/")]
+    public class WebAdapter : ControllerBase, ReservaPort, LivroPort
     {
-        private readonly BDAdapter _contexto;
-        private readonly NotificadorAdapter _notificador; //vai sumir dps
+        private readonly ReservaController _reservaController;
+        private readonly LivroController _livroController;
 
-        public WebAdapter(BDAdapter contexto, NotificadorAdapter notificador)
+    public WebAdapter(ReservaController reservaController,
+                      LivroController livroController)
+    {
+        _reservaController = reservaController;
+        _livroController = livroController;
+    }
+
+        [HttpGet("livros")]
+        public async Task<ActionResult<IEnumerable<Livro>>> GetLivros()
         {
-            _contexto = contexto;
-            _notificador = notificador;
+            return Ok(await _livroController.GetLivros());
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("reservas/{id}")]
         public async Task<ActionResult<Reserva>> GetReserva(string id)
         {
-            Reserva? reserva = await _contexto.Reservas.FindAsync(id);
-            if(reserva == null)
+            Reserva? reserva = await _reservaController.GetReserva(id);
+            if (reserva == null)
                 return NotFound();
 
-            return reserva;
+            return Ok(reserva);
         }
 
-        [HttpPost]
-        public async Task<ActionResult<Reserva>> CriaReserva(string grr, string idLivro)
+        [HttpPost("reservas")]
+        public async Task<ActionResult<Reserva>> ReservarLivro(
+            [FromQuery] string grr,
+            [FromQuery] string idLivro)
         {
-            Estudante? estudante = await _contexto.Estudantes.FindAsync(grr);
-            Livro? livro = await _contexto.Livros.FindAsync(idLivro);
-            if(estudante == null || livro == null)
-                return NotFound();
+            ResultadoReserva resultado = await _reservaController.ReservarLivro(grr, idLivro);
 
-            if(!estudante.PodeReservarLivro())
-                return Conflict("O estudante não pode realizar uma nova reserva no momento.");
-            
-            if(livro.Disponiveis().Count == 0)
-                return Conflict("Não há exemplares do livro disponíveis no momento.");
-
-            Reserva novaReserva = new Reserva(livro, estudante);
-
-            _contexto.Reservas.Add(novaReserva);
-            await _contexto.SaveChangesAsync();
-
-            _notificador.NotificaEmail(estudante.Nome, estudante.Email, "Reserva feita chefia ;)");
-
-            return CreatedAtAction(nameof(GetReserva), new {id = novaReserva.Id}, novaReserva);
+            switch(resultado)
+            {
+                case ResultadoReserva.Sucesso:
+                    return Ok();
+                case ResultadoReserva.EstudanteOuLivroNaoEncontrado:
+                    return NotFound("Estudante ou livro não encontrado.");
+                case ResultadoReserva.EstudanteNaoPodeReservar:
+                    return Conflict("O estudante não pode realizar uma nova reserva no momento.");
+                case ResultadoReserva.LivroIndisponivel:
+                    return Conflict("Não há exemplares do livro disponíveis no momento.");
+                default:
+                    return StatusCode(500);
+            }
         }
     }
 }

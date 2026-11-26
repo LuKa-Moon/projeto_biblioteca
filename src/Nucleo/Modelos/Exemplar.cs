@@ -1,4 +1,4 @@
-namespace src.nucleo.modelos
+namespace src.Nucleo.Modelos
 {
     public class Exemplar
     {

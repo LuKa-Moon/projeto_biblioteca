@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using src.Adaptadores;
+using src.Nucleo.Controllers;
+using src.Nucleo.Repositorios;
+using src.Nucleo.IServicos;
+using src.Nucleo.Servicos;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +24,17 @@ builder.Services.AddCors(options =>
         }
     )
 );
+
+builder.Services.AddScoped<INotificacaoService, NotificacaoService>();
+
+builder.Services.AddScoped<ReservaController>();
+builder.Services.AddScoped<LivroController>();
+
+builder.Services.AddScoped<ReservaRepository>();
+builder.Services.AddScoped<LivroRepository>();
+builder.Services.AddScoped<EstudanteRepository>();
+
+builder.Services.AddScoped<NotificadorEmailAdapter>();
 
 var app = builder.Build();
 

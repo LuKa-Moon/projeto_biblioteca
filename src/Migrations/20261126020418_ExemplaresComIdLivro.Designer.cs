@@ -20,7 +20,7 @@ namespace src.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.15");
 
-            modelBuilder.Entity("src.nucleo.modelos.Estudante", b =>
+            modelBuilder.Entity("src.Nucleo.Modelos.Estudante", b =>
                 {
                     b.Property<string>("Grr")
                         .HasColumnType("TEXT");
@@ -41,7 +41,7 @@ namespace src.Migrations
                     b.ToTable("Estudantes");
                 });
 
-            modelBuilder.Entity("src.nucleo.modelos.Exemplar", b =>
+            modelBuilder.Entity("src.Nucleo.Modelos.Exemplar", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -60,7 +60,7 @@ namespace src.Migrations
                     b.ToTable("Exemplares");
                 });
 
-            modelBuilder.Entity("src.nucleo.modelos.Livro", b =>
+            modelBuilder.Entity("src.Nucleo.Modelos.Livro", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -78,7 +78,7 @@ namespace src.Migrations
                     b.ToTable("Livros");
                 });
 
-            modelBuilder.Entity("src.nucleo.modelos.Reserva", b =>
+            modelBuilder.Entity("src.Nucleo.Modelos.Reserva", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -109,9 +109,9 @@ namespace src.Migrations
                     b.ToTable("Reservas");
                 });
 
-            modelBuilder.Entity("src.nucleo.modelos.Exemplar", b =>
+            modelBuilder.Entity("src.Nucleo.Modelos.Exemplar", b =>
                 {
-                    b.HasOne("src.nucleo.modelos.Livro", "LivroBase")
+                    b.HasOne("src.Nucleo.Modelos.Livro", "LivroBase")
                         .WithMany("Exemplares")
                         .HasForeignKey("LivroId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -120,15 +120,15 @@ namespace src.Migrations
                     b.Navigation("LivroBase");
                 });
 
-            modelBuilder.Entity("src.nucleo.modelos.Reserva", b =>
+            modelBuilder.Entity("src.Nucleo.Modelos.Reserva", b =>
                 {
-                    b.HasOne("src.nucleo.modelos.Livro", "LivroReservado")
+                    b.HasOne("src.Nucleo.Modelos.Livro", "LivroReservado")
                         .WithMany()
                         .HasForeignKey("LivroReservadoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("src.nucleo.modelos.Estudante", "Responsavel")
+                    b.HasOne("src.Nucleo.Modelos.Estudante", "Responsavel")
                         .WithMany("Reservas")
                         .HasForeignKey("ResponsavelGrr")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -139,12 +139,12 @@ namespace src.Migrations
                     b.Navigation("Responsavel");
                 });
 
-            modelBuilder.Entity("src.nucleo.modelos.Estudante", b =>
+            modelBuilder.Entity("src.Nucleo.Modelos.Estudante", b =>
                 {
                     b.Navigation("Reservas");
                 });
 
-            modelBuilder.Entity("src.nucleo.modelos.Livro", b =>
+            modelBuilder.Entity("src.Nucleo.Modelos.Livro", b =>
                 {
                     b.Navigation("Exemplares");
                 });

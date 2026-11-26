@@ -1,4 +1,4 @@
-using src.nucleo.modelos;
+using src.Nucleo.Modelos;
 using Microsoft.EntityFrameworkCore;
 
 namespace src.Adaptadores
