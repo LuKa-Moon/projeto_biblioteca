@@ -11,7 +11,6 @@ async function BuscarLivros() {
   }
 
   const livros = await resposta.json();
-  console.log(livros);
 
   const livrosLista = document.getElementById("livros-lista");
   livrosLista.innerHTML = "";
