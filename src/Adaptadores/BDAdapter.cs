@@ -1,3 +1,4 @@
+
 using src.Nucleo.Modelos;
 using src.Nucleo.Portas;
 using Microsoft.EntityFrameworkCore;
@@ -38,12 +39,16 @@ namespace src.Adaptadores
             if (typeof(T) == typeof(Estudante))
                 query = query.Include("Reservas");
 
-            return await query.FirstOrDefaultAsync(e =>
-                EF.Property<object>(e, "Id").Equals(id));
+            var chave = await query.ToListAsync();
+
+            return chave.FirstOrDefault(e =>
+                Entry(e).Property(
+                    Entry(e).Metadata.FindPrimaryKey()!.Properties[0].Name
+                ).CurrentValue?.Equals(id) == true);
         }
 
         // Buscar todos incluindo relacionamentos
-        public async Task<T?> GetComRelacionamentos<T>(object id)
+        public async Task<IEnumerable<T>> GetTodosComRelacionamentos<T>()
             where T : class
         {
             IQueryable<T> query = Set<T>();
@@ -54,12 +59,7 @@ namespace src.Adaptadores
             if (typeof(T) == typeof(Estudante))
                 query = query.Include("Reservas");
 
-            var chave = await query.ToListAsync();
-
-            return chave.FirstOrDefault(e =>
-                Entry(e).Property(
-                    Entry(e).Metadata.FindPrimaryKey()!.Properties[0].Name
-                ).CurrentValue?.Equals(id) == true);
+            return await query.ToListAsync();
         }
 
         // Criar
