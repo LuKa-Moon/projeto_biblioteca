@@ -33,17 +33,22 @@ namespace src.Adaptadores
             IQueryable<T> query = Set<T>();
 
             if (typeof(T) == typeof(Livro))
+            {
                 query = query.Include("Exemplares");
+            }
 
             if (typeof(T) == typeof(Estudante))
+            {
                 query = query.Include("Reservas");
+            }
 
-            var chave = await query.ToListAsync();
+            var chavePrimaria = Model
+                .FindEntityType(typeof(T))!
+                .FindPrimaryKey()!
+                .Properties[0].Name;
 
-            return chave.FirstOrDefault(e =>
-                Entry(e).Property(
-                    Entry(e).Metadata.FindPrimaryKey()!.Properties[0].Name
-                ).CurrentValue?.Equals(id) == true);
+            return await query.FirstOrDefaultAsync(e =>
+                EF.Property<object>(e, chavePrimaria).Equals(id));
         }
 
         // Buscar todos incluindo relacionamentos
