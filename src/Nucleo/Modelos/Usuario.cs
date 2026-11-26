@@ -1,8 +1,8 @@
 namespace src.Nucleo.Modelos
 {
-    abstract public class Usuario
+    public abstract class Usuario
     {
-        public required string Nome {get; set;}
-        public int Cpf {get; set;}
+        public required string Nome { get; set; }
+        public required string Cpf { get; set; }
     }
 }

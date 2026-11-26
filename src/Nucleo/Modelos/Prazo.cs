@@ -27,7 +27,7 @@ namespace src.Nucleo.Modelos
 
         public void Renovar()
         {
-            this.DataLimite.AddDays(7);
+            this.DataLimite = this.DataLimite.AddDays(7);
         }
 
         public void Finalizar()
