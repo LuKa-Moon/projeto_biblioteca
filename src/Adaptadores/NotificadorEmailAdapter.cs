@@ -40,10 +40,13 @@ namespace src.Adaptadores
                     SecureSocketOptions.StartTls
                 );
 
-                await smtp.AuthenticateAsync(
-                    Environment.GetEnvironmentVariable("EMAIL_USER"),
-                    Environment.GetEnvironmentVariable("EMAIL_PASSWORD")
-                );
+                string usuario = Environment.GetEnvironmentVariable("EMAIL_USER")
+                    ?? throw new InvalidOperationException("EMAIL_USER não configurado.");
+
+                string senha = Environment.GetEnvironmentVariable("EMAIL_PASSWORD")
+                    ?? throw new InvalidOperationException("EMAIL_PASSWORD não configurado.");
+
+                await smtp.AuthenticateAsync(usuario, senha);
 
                 await smtp.SendAsync(
                     new SmtpSendRequest(email)

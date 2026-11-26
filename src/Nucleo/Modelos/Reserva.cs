@@ -2,7 +2,7 @@ namespace src.Nucleo.Modelos
 {
     public class Reserva : Prazo, INotificavel
     {
-        public Livro LivroReservado {get; set;}
+        public Livro LivroReservado {get; set;} = null!;
         public int Id {get; set;}
 
         public Reserva() {}

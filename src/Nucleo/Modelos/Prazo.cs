@@ -5,7 +5,7 @@ namespace src.Nucleo.Modelos
         public bool Finalizado {get; set;}
         public DateTime DataInicial {get; set;}
         public DateTime DataLimite {get; set;}
-        public Estudante Responsavel {get; set;}
+        public Estudante Responsavel {get; set;} = null!;
 
         public Prazo() {}
 

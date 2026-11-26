@@ -1,4 +1,3 @@
-
 using src.Nucleo.Modelos;
 using src.Portas;
 using Microsoft.EntityFrameworkCore;
