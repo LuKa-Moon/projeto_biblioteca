@@ -26,6 +26,42 @@ namespace src.Adaptadores
             return await Set<T>().ToListAsync();
         }
 
+        // Buscar por ID incluindo relacionamentos
+        public async Task<T?> GetComRelacionamentos<T>(object id)
+            where T : class
+        {
+            IQueryable<T> query = Set<T>();
+
+            if (typeof(T) == typeof(Livro))
+                query = query.Include("Exemplares");
+
+            if (typeof(T) == typeof(Estudante))
+                query = query.Include("Reservas");
+
+            return await query.FirstOrDefaultAsync(e =>
+                EF.Property<object>(e, "Id").Equals(id));
+        }
+
+        // Buscar todos incluindo relacionamentos
+        public async Task<T?> GetComRelacionamentos<T>(object id)
+            where T : class
+        {
+            IQueryable<T> query = Set<T>();
+
+            if (typeof(T) == typeof(Livro))
+                query = query.Include("Exemplares");
+
+            if (typeof(T) == typeof(Estudante))
+                query = query.Include("Reservas");
+
+            var chave = await query.ToListAsync();
+
+            return chave.FirstOrDefault(e =>
+                Entry(e).Property(
+                    Entry(e).Metadata.FindPrimaryKey()!.Properties[0].Name
+                ).CurrentValue?.Equals(id) == true);
+        }
+
         // Criar
         public async Task Criar<T>(T entidade) where T : class
         {
