@@ -34,16 +34,23 @@ builder.Services.AddCors(options =>
     )
 );
 
-builder.Services.AddScoped<INotificacaoService, NotificacaoService>();
-
-builder.Services.AddScoped<ReservaController>();
-builder.Services.AddScoped<LivroController>();
-
-builder.Services.AddScoped<ReservaRepository>();
+// Repositórios
 builder.Services.AddScoped<LivroRepository>();
 builder.Services.AddScoped<EstudanteRepository>();
+builder.Services.AddScoped<ReservaRepository>();
 
+// Serviços do núcleo
+builder.Services.AddScoped<ILivroService, LivroService>();
+builder.Services.AddScoped<IEstudanteService, EstudanteService>();
+builder.Services.AddScoped<IReservaService, ReservaService>();
+builder.Services.AddScoped<INotificacaoService, NotificacaoService>();
+
+// Adaptador de notificação
 builder.Services.AddScoped<NotificadorPort, NotificadorEmailAdapter>();
+
+// Controllers do núcleo
+builder.Services.AddScoped<LivroController>();
+builder.Services.AddScoped<ReservaController>();
 
 var app = builder.Build();
 

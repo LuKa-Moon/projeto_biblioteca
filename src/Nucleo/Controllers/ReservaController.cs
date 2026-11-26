@@ -1,69 +1,33 @@
 using src.Nucleo.Modelos;
-using src.Nucleo.Repositorios;
 using src.Nucleo.IServicos;
 
 namespace src.Nucleo.Controllers
 {
-    public enum ResultadoReserva
-    {
-        Sucesso,
-        EstudanteOuLivroNaoEncontrado,
-        EstudanteNaoPodeReservar,
-        LivroIndisponivel
-    }
-
     public class ReservaController
     {
-        private readonly ReservaRepository _reservaRepository;
-        private readonly LivroRepository _livroRepository;
-        private readonly EstudanteRepository _estudanteRepository;
-        private readonly INotificacaoService _notificacaoService;
+        private readonly IReservaService _reservaService;
 
-        public ReservaController(
-            ReservaRepository reservaRepository,
-            LivroRepository livroRepository,
-            EstudanteRepository estudanteRepository,
-            INotificacaoService notificacaoService)
+        public ReservaController(IReservaService reservaService)
         {
-            _reservaRepository = reservaRepository;
-            _livroRepository = livroRepository;
-            _estudanteRepository = estudanteRepository;
-            _notificacaoService = notificacaoService;
+            _reservaService = reservaService;
         }
 
         public async Task<Reserva?> GetReserva(string id)
         {
-            return await _reservaRepository.Get(id);
+            if (!int.TryParse(id, out int idReserva))
+                return null;
+
+            return await _reservaService.BuscarReservaId(idReserva);
         }
 
         public async Task<ResultadoReserva> ReservarLivro(
-            string grr, string idLivro)
+            string grr,
+            string idLivro)
         {
-            Estudante? estudante =
-                await _estudanteRepository.Get(grr);
-
-            Livro? livro =
-                await _livroRepository.Get(idLivro);
-
-            if (estudante == null || livro == null)
+            if (!int.TryParse(idLivro, out int id))
                 return ResultadoReserva.EstudanteOuLivroNaoEncontrado;
 
-            if (!estudante.PodeReservarLivro())
-                return ResultadoReserva.EstudanteNaoPodeReservar;
-
-            if (livro.Disponiveis().Count == 0)
-                return ResultadoReserva.LivroIndisponivel;
-
-            Reserva novaReserva = new Reserva(livro, estudante);
-
-            await _reservaRepository.Criar(novaReserva);
-
-            await _notificacaoService.Notificar(
-                (src.Nucleo.Modelos.INotificavel)novaReserva,
-                estudante.Nome,
-                estudante.Email);
-
-            return ResultadoReserva.Sucesso;
+            return await _reservaService.ReservarLivro(grr, id);
         }
     }
 }

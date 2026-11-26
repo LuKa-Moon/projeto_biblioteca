@@ -1,20 +1,20 @@
 using src.Nucleo.Modelos;
-using src.Nucleo.Repositorios;
+using src.Nucleo.IServicos;
 
 namespace src.Nucleo.Controllers
 {
     public class LivroController
     {
-        private readonly LivroRepository _livroRepository;
+        private readonly ILivroService _livroService;
 
-        public LivroController(LivroRepository livroRepository)
+        public LivroController(ILivroService livroService)
         {
-            _livroRepository = livroRepository;
+            _livroService = livroService;
         }
 
         public async Task<IEnumerable<Livro>> GetLivros()
         {
-            return await _livroRepository.GetAll();
+            return await _livroService.BuscarLivros();
         }
     }
 }

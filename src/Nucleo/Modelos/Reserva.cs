@@ -2,12 +2,13 @@ namespace src.Nucleo.Modelos
 {
     public class Reserva : Prazo, INotificavel
     {
-        public Livro LivroReservado {get; set;} = null!;
+        public Exemplar LivroReservado {get; set;} = null!;
         public int Id {get; set;}
+        public int LivroReservadoId {get; set;}
 
         public Reserva() {}
 
-        public Reserva(Livro livro, Estudante responsavel)
+        public Reserva(Exemplar livro, Estudante responsavel)
             : base(responsavel)
         {
             this.LivroReservado = livro;
@@ -15,7 +16,7 @@ namespace src.Nucleo.Modelos
 
         public string GeraNotificacao()
         {
-            return $"Sua reserva do livro '{LivroReservado.Nome}' foi realizada com sucesso!";
+            return $"Sua reserva do livro '{LivroReservado.LivroBase.Nome}' foi realizada com sucesso!";
         }
     }
 }

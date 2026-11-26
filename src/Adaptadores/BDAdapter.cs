@@ -98,6 +98,12 @@ namespace src.Adaptadores
                 .HasForeignKey(e => e.LivroId)
                 .IsRequired();
 
+            modelBuilder.Entity<Reserva>()
+                .HasOne(r => r.LivroReservado)
+                .WithMany()
+                .HasForeignKey(r => r.LivroReservadoId)
+                .IsRequired();
+
             base.OnModelCreating(modelBuilder);
         }
     }
