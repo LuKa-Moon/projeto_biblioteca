@@ -1,45 +1,39 @@
-using Microsoft.EntityFrameworkCore;
-using src.Adaptadores;
+using src.Nucleo.Portas;
 
 namespace src.Nucleo.Repositorios
 {
     public abstract class Repository<T> where T : class
     {
-        protected readonly BDAdapter _contexto;
-        protected readonly DbSet<T> _dbSet;
+        protected readonly IBDPort _bdPort;
 
-        protected Repository(BDAdapter contexto)
+        protected Repository(IBDPort bdPort)
         {
-            _contexto = contexto;
-            _dbSet = _contexto.Set<T>();
+            _bdPort = bdPort;
         }
 
         public virtual async Task<T?> Get(object id)
         {
-            return await _dbSet.FindAsync(id);
+            return await _bdPort.Get<T>(id);
         }
 
         public virtual async Task<IEnumerable<T>> GetAll()
         {
-            return await _dbSet.ToListAsync();
+            return await _bdPort.GetAll<T>();
         }
 
         public virtual async Task Criar(T entidade)
         {
-            await _dbSet.AddAsync(entidade);
-            await _contexto.SaveChangesAsync();
+            await _bdPort.Criar(entidade);
         }
 
         public virtual async Task Atualizar(T entidade)
         {
-            _dbSet.Update(entidade);
-            await _contexto.SaveChangesAsync();
+            await _bdPort.Atualizar(entidade);
         }
 
         public virtual async Task Remover(T entidade)
         {
-            _dbSet.Remove(entidade);
-            await _contexto.SaveChangesAsync();
+            await _bdPort.Remover(entidade);
         }
     }
 }

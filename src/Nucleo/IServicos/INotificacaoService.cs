@@ -2,6 +2,6 @@ namespace src.Nucleo.IServicos
 {
     public interface INotificacaoService
     {
-        Task Notificar(string nome, string email, string mensagem);
+        Task Notificar(INotificavel notificavel, string destinatario, string endereco);
     }
 }

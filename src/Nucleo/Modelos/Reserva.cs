@@ -1,6 +1,6 @@
 namespace src.Nucleo.Modelos
 {
-    public class Reserva : Prazo
+    public class Reserva : Prazo, INotificavel
     {
         public Livro LivroReservado {get; set;}
         public int Id {get; set;}
@@ -11,6 +11,11 @@ namespace src.Nucleo.Modelos
             : base(responsavel)
         {
             this.LivroReservado = livro;
+        }
+
+        public string GeraNotificacao()
+        {
+            return $"Sua reserva do livro '{LivroReservado.Nome}' foi realizada com sucesso!";
         }
     }
 }

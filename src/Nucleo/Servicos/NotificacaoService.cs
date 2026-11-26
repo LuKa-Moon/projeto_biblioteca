@@ -1,21 +1,29 @@
-using src.Nucleo.IServicos;
-using src.Adaptadores;
+using src.Nucleo.Modelos;
+using src.Portas;
 
 namespace src.Nucleo.Servicos
 {
-    public class NotificacaoService : INotificacaoService
+    public class NotificacaoService
     {
-        private readonly NotificadorEmailAdapter _notificador;
+        private readonly NotificadorPort _notificador;
 
-        public NotificacaoService(NotificadorEmailAdapter notificador)
+        public NotificacaoService(NotificadorPort notificador)
         {
             _notificador = notificador;
         }
 
         public async Task Notificar(
-            string nome, string email, string mensagem)
+            INotificavel notificavel,
+            string destinatario,
+            string endereco)
         {
-            await _notificador.Notifica(nome, email, mensagem);
+            string mensagem = notificavel.GeraNotificacao();
+
+            await _notificador.Notifica(
+                destinatario,
+                endereco,
+                mensagem
+            );
         }
     }
 }

@@ -17,7 +17,7 @@ namespace src.Adaptadores
             email.From.Add(
                 new MailboxAddress(
                     "Biblioteca",
-                    "deoferreira.gustavo@gmail.com"
+                    Environment.GetEnvironmentVariable("EMAIL_USER")
                 )
             );
 
@@ -41,8 +41,8 @@ namespace src.Adaptadores
                 );
 
                 await smtp.AuthenticateAsync(
-                    "smtp_username",
-                    "smtp_password"
+                    Environment.GetEnvironmentVariable("EMAIL_USER"),
+                    Environment.GetEnvironmentVariable("EMAIL_PASSWORD")
                 );
 
                 await smtp.SendAsync(
